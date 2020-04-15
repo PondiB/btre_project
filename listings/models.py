@@ -28,6 +28,9 @@ class Listing(models.Model):
     def __str__(self):
         return self.title
 
+class Photo(models.Model):
+    pass
+
 
 
 
