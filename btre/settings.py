@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's6_th@s7_mv0=j++=zivh_4)*kym8w2cve%^o04ljoa5m@eh#h'
+SECRET_KEY = 'ubsq#xai!qa_!dsi=61a&mbqn)lxtl*x48$fi0v-l^k%0z1^bn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'btre.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,12 +81,11 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'btredb',
         'USER': 'postgres',
         'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': 'localhost'
     }
 }
 
@@ -127,26 +126,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-SATICFILES_DIR = [ 
-    os.path.join(BASE_DIR,'btre/static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'btre/static')
 ]
 
-#Media Folder SETTINGS
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# Media Folder Settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-#Messages F
-
+# Messages
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
+    messages.ERROR: 'danger'
 }
 
-#Email Configuration
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT =587
-EMAIL_HOST_USER = 'pondibrian@gmail.com'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = True
+try:
+    from .local_settings import *
+except ImportError:
+    pass
